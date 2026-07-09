@@ -20,17 +20,7 @@ class OtpScreen extends StatelessWidget {
           Uihelper.CustomText(text: " Wrong Number? " , height: 14 ,color: Color(0XFF00A884),fontWeight: FontWeight.normal),
 
           SizedBox(height: 50,),
-
-          DropdownButtonFormField(items: countries.map((country) {
-            return DropdownMenuItem(
-              child: Text(country.toString()), value: country,
-            );  
-          }).toList(), onChanged: (value){
-            setState(() {
-              selectedCountry = value.toString();
-            });
-          }
-          ],
+          ]
         ),
       ),
     );
