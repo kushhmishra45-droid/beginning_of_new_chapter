@@ -62,7 +62,7 @@ String selectedCountry = "India";
            SizedBox(
             width: 40,
             child: TextField(
-                keyboardType: TextInputType.number,
+                keyboardType: TextInputType.phone,
                 decoration: InputDecoration(
                   hintText: "+91",
                   border: UnderlineInputBorder(
@@ -82,7 +82,7 @@ String selectedCountry = "India";
             width: 250,
             child:TextField(
                 controller: phoneController,
-                keyboardType: TextInputType.number,
+                keyboardType: TextInputType.phone,
                 decoration: InputDecoration(
                   hintText: "Phone Number",
                   border: UnderlineInputBorder(
@@ -103,10 +103,19 @@ String selectedCountry = "India";
         ),
       ),
         floatingActionButton: Uihelper.CustomButton( callback: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => OtpScreen()));
+     login(phoneController.text.toString());
+  //      Navigator.push(context, MaterialPageRoute(builder: (context) => OtpScreen()));
        } ,buttonname: "Next", ),
        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
     
+  }
+  login(String phonenumber){
+    if(phonenumber==""){
+      return ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Enter your phone number"),backgroundColor: Colors.green,));
+    }
+    else{
+      Navigator.push(context, MaterialPageRoute(builder:(context)=>OtpScreen(phonenumber: phonenumber,)));
+    }
   }
 }
