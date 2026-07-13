@@ -1,9 +1,20 @@
+import 'dart:io';
+
 import 'package:begining_of_new_chapter/Screens/homescreen.dart';
 import 'package:begining_of_new_chapter/widgets/uihelper.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
-class Mainscreen extends StatelessWidget {
+class Mainscreen extends StatefulWidget {
   const Mainscreen({super.key});
+
+  @override
+  State<Mainscreen> createState() => _MainscreenState();
+}
+
+class _MainscreenState extends State<Mainscreen> {
+
+  File? pickedImage;
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +33,13 @@ class Mainscreen extends StatelessWidget {
             onTap: () {
               _openImagePicker(context);
             },
-            child: CircleAvatar(
+            child: pickedImage==null? CircleAvatar(
               radius: 104,
               backgroundColor: Color(0XFFD9D9D9),
               child: Icon(Icons.person, size: 50, color: Color(0XFF5E5E5E),),
+            ): CircleAvatar(
+              radius: 104,
+              backgroundImage: FileImage(pickedImage!), 
             ),
           ),
           SizedBox(height: 50,),
@@ -33,7 +47,7 @@ class Mainscreen extends StatelessWidget {
      mainAxisAlignment: MainAxisAlignment.center,
     children: [
       SizedBox(
-        width: 200,
+        width: 300,
         child: TextField(
          keyboardType: TextInputType.name,
           decoration: InputDecoration(
@@ -48,7 +62,7 @@ class Mainscreen extends StatelessWidget {
         ),
       ),
       SizedBox(width: 10,),
-       Image.asset("assets/happy.png"),
+       Image.asset("assets/happy.png", height: 40, width: 40,),
     ],
   ),
    
@@ -61,6 +75,7 @@ class Mainscreen extends StatelessWidget {
        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
+
   _openImagePicker(BuildContext context) {
     showModalBottomSheet(
       context: context,
@@ -76,7 +91,8 @@ class Mainscreen extends StatelessWidget {
                 title: Text('Take a photo'),
                 onTap: () {
                   // Handle camera option
-                  Navigator.pop(context);
+                  // Navigator.pop(context);
+                  _pickimage(ImageSource.camera);
                 },
               ),
               ListTile(
@@ -84,13 +100,33 @@ class Mainscreen extends StatelessWidget {
                 title: Text('Choose from gallery'),
                 onTap: () {
                   // Handle gallery option
-                  Navigator.pop(context);
+                  // Navigator.pop(context);
+                  _pickimage(ImageSource.gallery);
                 },
               ),
             ],
           ),
         );
+
       },
+      
     );
   }
+  _pickimage(ImageSource imagesource) async {
+ try {
+    final pickedFile = await ImagePicker().pickImage(source: imagesource);
+    if (pickedFile== null) return;
+    final imageTemp = File(pickedFile.path);
+    setState(() {
+      pickedImage = imageTemp;
+    });
+   
+  } catch (e) {
+    return ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('e.toString()'), backgroundColor: Colors.green ));
+    
+  }
 }
+
+}
+
