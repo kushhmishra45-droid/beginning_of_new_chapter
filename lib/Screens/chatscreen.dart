@@ -84,10 +84,10 @@ Column(
               radius: 40,
               backgroundImage: NetworkImage(arrcount[index]["image"].toString()),
             ),
-            title: Uihelper.CustomText(text: arrcount[index]["name"].toString(),height:16),
+            title: Uihelper.CustomText(text: arrcount[index]["name"].toString(),height:16,fontWeight: FontWeight.bold),
             subtitle: Uihelper.CustomText(text: arrcount[index]["lastmessage"].toString(),height: 14,color:   Color(0XFF889095)),
             trailing: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center, 
               children: [
                 Uihelper.CustomText(text: arrcount[index]["time"].toString(),height: 14),
                 SizedBox(height: 5,),
