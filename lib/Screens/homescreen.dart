@@ -14,6 +14,7 @@ class HomeScreen extends StatelessWidget {
       length: 4, 
       child: Scaffold(        
               appBar: AppBar(
+                automaticallyImplyLeading: false,
                 elevation: 0,
                 bottom:  TabBar(
                   tabs: [
