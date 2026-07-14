@@ -6,7 +6,9 @@ class CameraScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Text("Camera"),
+      body: Center(
+        child: Text("Camera", style: TextStyle(height: 30, color: Colors.black, fontWeight: FontWeight.bold)),
+      ),
     );
   }
 }

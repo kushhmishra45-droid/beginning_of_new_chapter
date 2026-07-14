@@ -27,12 +27,7 @@ TextEditingController otp6controller =TextEditingController();
 //String phonenumber;
   @override
  State<OtpScreen> createState() => _OtpScreenState();
-//}
 
-//class _OtpScreenState extends State<OtpScreen> {
-//   get phonenumber => null;
-  
-  //  get child => null;
 
 
 

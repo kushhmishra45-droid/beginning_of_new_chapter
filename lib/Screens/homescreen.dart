@@ -18,12 +18,12 @@ class HomeScreen extends StatelessWidget {
                 bottom:  TabBar(
                   tabs: [
                     Tab(icon: Icon(Icons.camera_alt)),
-                    Tab(text: "CHATS"),
-                    Tab(text: "STATUS"),
-                    Tab(text: "CALLS"),
+                    Tab(text: "CHATS",height: 16,),
+                    Tab(text: "STATUS",height: 16,),
+                    Tab(text: "CALLS",height: 16,),
                   ],indicatorColor: Colors.white
                 ),
-                toolbarHeight: 125,
+                toolbarHeight: 100,
                 title: Uihelper.CustomText(text: "Whatsapp", height: 20, color: Colors.white),
                 actions: [
                   Padding(
